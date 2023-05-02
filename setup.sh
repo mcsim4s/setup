@@ -20,3 +20,5 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 		set_up_mac
 fi
 
+echo "Configuring git"
+git config --global alias.co checkout 

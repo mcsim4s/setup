@@ -19,4 +19,5 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH=$PATH:$HOME/.local/bin
 ssh-add -K ~/.ssh/id_rsa
 
-[ -f "~/.zsh_local" ] && source "~/.zsh_local"
+[ -f "$HOME/.zsh_local" ] && source "$HOME/.zsh_local"
+[ -f "aliases" ] && source "aliases"
