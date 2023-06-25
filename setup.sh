@@ -30,6 +30,13 @@ install_oh_my_zsh() {
 	ln zsh/.zshrc ~/.zshrc
 }
 
+common_setup() {
+	git config --global user.email "mcsim1993@gmail.com"
+	git config --global user.name "Maxim Gribov (mcsim4s)"
+}
+
+common_setup
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "Detected os is linux. Setting up linux environment..."
     set_up_linux
