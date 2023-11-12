@@ -24,4 +24,4 @@ export PATH=$PATH:$HOME/.local/bin
 ssh-add ~/.ssh/id_rsa
 
 [ -f "$HOME/.zsh_local" ] && source "$HOME/.zsh_local"
-[ -f "aliases" ] && source "aliases"
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"

@@ -1,18 +1,21 @@
 #!/bin/bash
 
 set_up_mac() {
+	install_oh_my_zsh
+
 	echo "Installing brew..."
 	which -s brew
 	[[ $? != 0 ]] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-	install_oh_my_zsh
+	echo "Installing jenv..."
+	which -s jenv
+  [[ $? != 0 ]] && brew install jenv
+  jenv enable-plugin export
+
+  exec zsh
 }
 
 set_up_linux() {
-	echo "Installing zsh..."
-	which zsh
-	[[ $? != 0 ]] && sudo apt install zsh -y
-
 	install_oh_my_zsh
 }
 
@@ -28,6 +31,7 @@ install_oh_my_zsh() {
 	echo "Linking zsh .dotfiles..."
 	[[ -f "$HOME/.zshrc" ]] && rm ~/.zshrc
 	ln zsh/.zshrc ~/.zshrc
+	ln zsh/.aliases ~/.aliases
 }
 
 common_setup() {
