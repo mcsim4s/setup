@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set_up_mac() {
-	install_oh_my_zsh
+
 
 	echo "Installing brew..."
 	which -s brew
@@ -12,7 +12,10 @@ set_up_mac() {
   [[ $? != 0 ]] && brew install jenv
   jenv enable-plugin export
 
-  exec zsh
+  brew install --cask font-fira-code-nerd-font
+  brew install starship
+
+  install_oh_my_zsh
 }
 
 set_up_linux() {
@@ -32,9 +35,23 @@ install_oh_my_zsh() {
 	[[ -f "$HOME/.zshrc" ]] && rm ~/.zshrc
 	ln zsh/.zshrc ~/.zshrc
 	ln zsh/.aliases ~/.aliases
+	starship preset bracketed-segments -o ~/.config/starship.tomls
+  echo "" >> ~/.config/starship.toml
+  echo "[line_break]" >> ~/.config/starship.toml
+  echo "disabled = true" >> ~/.config/starship.toml
+
+  if ! [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  fi
+
+  if ! [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  fi
 }
 
 common_setup() {
+	echo "Configuring git"
+	git config --global alias.co checkout 
 	git config --global user.email "mcsim1993@gmail.com"
 	git config --global user.name "Maxim Gribov (mcsim4s)"
 }
@@ -49,5 +66,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	set_up_mac
 fi
 
-echo "Configuring git"
-git config --global alias.co checkout 
+exec zsh
