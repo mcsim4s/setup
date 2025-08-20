@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="random"
 
 plugins=(
   git
@@ -8,7 +9,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-eval "$(starship init zsh)"
 
 # --------------- ENV SETUP ---------------
 export GOPATH="${HOME}/.go"

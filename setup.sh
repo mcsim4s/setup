@@ -13,7 +13,6 @@ set_up_mac() {
   jenv enable-plugin export
 
   brew install --cask font-fira-code-nerd-font
-  brew install starship
 
   install_oh_my_zsh
 }
@@ -35,10 +34,6 @@ install_oh_my_zsh() {
 	[[ -f "$HOME/.zshrc" ]] && rm ~/.zshrc
 	ln zsh/.zshrc ~/.zshrc
 	ln zsh/.aliases ~/.aliases
-	starship preset bracketed-segments -o ~/.config/starship.tomls
-  echo "" >> ~/.config/starship.toml
-  echo "[line_break]" >> ~/.config/starship.toml
-  echo "disabled = true" >> ~/.config/starship.toml
 
   if ! [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
